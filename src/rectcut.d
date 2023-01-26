@@ -19,4 +19,11 @@ struct RectCut(T) if (isNumeric!(T))
         maxX = max(minX, maxX - a);
         return RectCut(maxX, minY, originalX, maxY);
     }
+    
+    auto cutTop(T a)
+    {
+        T originalY = minY;
+        minY = min(maxX, minY + a);
+        return RectCut(minX, originalY, maxX, minY);
+    }
 }
