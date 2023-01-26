@@ -2,7 +2,15 @@ module rectcut;
 import std.algorithm;
 import std.traits;
 
-struct RectCut(T) if (isNumeric!(T))
+enum RectCutSide
+{
+    left,
+    right,
+    top,
+    bottom
+}
+
+struct Rect(T) if (isNumeric!(T))
 {
     T minX, minY, maxX, maxY;
     
