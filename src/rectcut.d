@@ -2,17 +2,28 @@ module rectcut;
 import std.algorithm;
 import std.traits;
 
-enum RectCutSide
-{
-    left,
-    right,
-    top,
-    bottom
-}
-
 struct Rect(T) if (isNumeric!(T))
 {
+    enum Side
+    {
+        left,
+        right,
+        top,
+        bottom
+    }
+
     T minX, minY, maxX, maxY;
+    
+    auto cut(T a, Side side)
+    {
+        switch(side)
+        {
+            case Side.right: return rect.cutRight(a);
+            case Side.left:  return rect.cutLeft(a);
+            case Side.top:   return rect.cutTop(a);
+            default:         return rect.cutBottom(a);
+        }
+    }
     
     auto cutLeft(T a)
     {
