@@ -2,7 +2,7 @@ module rectcut;
 import std.algorithm;
 import std.traits;
 
-struct Rect(T) if (isNumeric!(T))
+struct RectCut(T) if (isNumeric!(T))
 {
     enum Side
     {
@@ -95,5 +95,31 @@ struct Rect(T) if (isNumeric!(T))
     auto addBottom(T a)
     {
         return RectCut(minX, minY, maxX, maxY + a);
+    }
+    
+    auto extend(T a)
+    {
+        return RectCut(minX - a, minY - a, maxX + a, maxY + a);
+    }
+    
+    auto contract(T a)
+    {
+        return RectCut(minX + a, minY + a, maxX - a, maxY - a);
+    }
+    
+    void selfExtend(T a)
+    {
+        minX -= a; 
+        minY -= a; 
+        maxX += a; 
+        maxY += a;
+    }
+    
+    void selfcontract(T a)
+    {
+        minX += a; 
+        minY += a; 
+        maxX -= a; 
+        maxY -= a;
     }
 }
