@@ -57,4 +57,24 @@ struct RectCut(T) if (isNumeric!(T))
         newY = max(minY, maxY - a);
         return RectCut(minX, newY, maxX, maxY);
     }
+    
+    auto addLeft(T a)
+    {
+        return RectCut(minX - a, minY, maxX, maxY);
+    }
+    
+    auto addRight(T a)
+    {
+        return RectCut(minX, minY, maxX + a, maxY);
+    }
+    
+    auto addTop(T a)
+    {
+        return RectCut(minX, minY - a, maxX, maxY);
+    }
+    
+    auto addBottom(T a)
+    {
+        return RectCut(minX, minY, maxX, maxY + a);
+    }
 }
