@@ -1,1 +1,6 @@
- 
+import rectcut;
+
+void main()
+{
+
+}
